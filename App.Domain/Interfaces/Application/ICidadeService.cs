@@ -12,6 +12,7 @@ namespace App.Domain.Interfaces.Application
         Cidade BuscaPorId(Guid id);
         List<Cidade> listaCidade();
         void Salvar(Cidade obj);
+        void RemoverCidade(Guid id);
 
     }
 }

@@ -37,6 +37,16 @@ namespace App.Application.Services
             _repository.Save(obj);
             _repository.SaveChanges();
         }
+
+        public void RemoverCidade(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new Exception("Informe o id a remover");
+            }
+            _repository.Delete(id);
+            _repository.SaveChanges();
+        }
     }
 
 

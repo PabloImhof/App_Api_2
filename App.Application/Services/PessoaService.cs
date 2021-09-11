@@ -34,7 +34,10 @@ namespace App.Application.Services
                   Peso = p.Peso,
                   Cidade = new Cidade
                   {
-                      Nome = p.Cidade.Nome
+                      Nome = p.Cidade.Nome,
+                      Cep = p.Cidade.Cep,
+                      Uf = p.Cidade.Uf
+
                   }
               }).ToList();
         }

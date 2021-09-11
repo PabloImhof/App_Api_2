@@ -33,14 +33,15 @@ namespace App.Api.Controllers
         }
 
         [HttpPost("Salvar")]
-        public JsonResult Salvar(string nome, int peso, DateTime dataNascimento, bool ativo)
+        public JsonResult Salvar(string nome, int peso, DateTime dataNascimento, bool ativo, Guid idCidade)
         {
             var obj = new Pessoa
             {
                 Nome = nome,
                 DataNascimento = dataNascimento,
                 Peso = peso,
-                Ativo = ativo
+                Ativo = ativo,
+                CidadeId = idCidade
             };
             _service.Salvar(obj);
             return Json(true);

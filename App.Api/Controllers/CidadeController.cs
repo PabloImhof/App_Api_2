@@ -43,7 +43,14 @@ namespace App.Api.Controllers
             };
             _service.Salvar(obj);
             return Json(true);
-        }        
+        }
+
+        [HttpGet("RemoveCidade")]
+        public JsonResult RemoveCidade(Guid id)
+        {
+            _service.RemoverCidade(id);
+            return Json(true);
+        }
 
     }
 }
