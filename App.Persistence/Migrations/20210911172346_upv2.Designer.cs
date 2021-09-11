@@ -3,15 +3,17 @@ using System;
 using App.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace App.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210911172346_upv2")]
+    partial class upv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace App.Persistence.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid?>("CidadeId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("timestamp without time zone");
 
@@ -60,20 +59,23 @@ namespace App.Persistence.Migrations
                     b.Property<int>("Peso")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("pes_cidadeId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CidadeId");
+                    b.HasIndex("pes_cidadeId");
 
                     b.ToTable("pessoa");
                 });
 
             modelBuilder.Entity("App.Domain.Entities.Pessoa", b =>
                 {
-                    b.HasOne("App.Domain.Entities.Cidade", "Cidade")
+                    b.HasOne("App.Domain.Entities.Cidade", "pes_cidade")
                         .WithMany()
-                        .HasForeignKey("CidadeId");
+                        .HasForeignKey("pes_cidadeId");
 
-                    b.Navigation("Cidade");
+                    b.Navigation("pes_cidade");
                 });
 #pragma warning restore 612, 618
         }

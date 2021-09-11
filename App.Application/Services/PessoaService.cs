@@ -20,12 +20,23 @@ namespace App.Application.Services
         {
             var obj = _repository.Query(x => x.Id == id).FirstOrDefault();
             return obj;
-            //throw new NotImplementedException();
         }
 
         public List<Pessoa> listaPessoas()
         {
-            return _repository.Query(x => 1 == 1).ToList();
+            //return _repository.Query(x => 1 == 1).ToList();
+
+            return _repository.Query(x => 1 == 1)
+              .Select(p => new Pessoa
+              {
+                  Id = p.Id,
+                  Nome = p.Nome,
+                  Peso = p.Peso,
+                  Cidade = new Cidade
+                  {
+                      Nome = p.Cidade.Nome
+                  }
+              }).ToList();
         }
 
         public void Salvar(Pessoa obj)

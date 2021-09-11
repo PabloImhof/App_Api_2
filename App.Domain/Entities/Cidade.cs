@@ -13,6 +13,7 @@ namespace App.Domain.Entities
         public Guid Id { get; set; }
         public string Cep { get; set; }
         public string Uf { get; set; }
-        public string Nome { get; set; }        
+        public string Nome { get; set; }   
+        
     }
 }
