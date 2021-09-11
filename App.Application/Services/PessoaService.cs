@@ -22,11 +22,16 @@ namespace App.Application.Services
             return obj;
         }
 
-        public List<Pessoa> listaPessoas()
+        public List<Pessoa> listaPessoas(string nome, int pesoMaiorQue, int pesoMenorQue)
         {
-            //return _repository.Query(x => 1 == 1).ToList();
+            nome = nome ?? "";
+            return _repository.Query(x =>
+            x.Nome.ToUpper().Contains(nome.ToUpper()) &&
+            (pesoMaiorQue == 0 || x.Peso >= pesoMaiorQue) &&
+            (pesoMenorQue == 0 || x.Peso <= pesoMenorQue)
+            )
 
-            return _repository.Query(x => 1 == 1)
+            //return _repository.Query(x => 1 == 1)
               .Select(p => new Pessoa
               {
                   Id = p.Id,
@@ -37,9 +42,10 @@ namespace App.Application.Services
                       Nome = p.Cidade.Nome,
                       Cep = p.Cidade.Cep,
                       Uf = p.Cidade.Uf
-
                   }
-              }).ToList();
+              })
+              .OrderByDescending(x => x.Nome).ThenBy(x => x.DataNascimento)
+              .ToList();
         }
 
         public void Salvar(Pessoa obj)
@@ -54,7 +60,8 @@ namespace App.Application.Services
 
         public Pessoa BuscaPessoa(string nome)
         {
-            var obj = _repository.Query(x => x.Nome == nome).FirstOrDefault();
+
+            var obj = _repository.Query(x => x.Nome.ToUpper().Contains(nome.ToUpper())).FirstOrDefault();
             return obj;
         }
 
