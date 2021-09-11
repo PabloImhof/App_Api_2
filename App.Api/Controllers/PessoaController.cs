@@ -45,5 +45,20 @@ namespace App.Api.Controllers
             _service.Salvar(obj);
             return Json(true);
         }
+
+        [HttpGet("BuscaPessoa")]
+        public JsonResult BuscaPessoa(string nome)
+        {
+            return Json(_service.BuscaPessoa(nome));
+        }
+
+
+        [HttpGet("RemovePessoa")]
+        public JsonResult RemovePessoa(Guid id)
+        {
+            _service.RemoverPessoa(id);
+            return Json(true);
+        }
+
     }
 }

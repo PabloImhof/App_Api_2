@@ -37,5 +37,24 @@ namespace App.Application.Services
             _repository.Save(obj);
             _repository.SaveChanges();
         }
+
+        public Pessoa BuscaPessoa(string nome)
+        {
+            var obj = _repository.Query(x => x.Nome == nome).FirstOrDefault();
+            return obj;
+        }
+
+        public void RemoverPessoa(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new Exception("Informe o id a remover");
+            }
+            _repository.Delete(id);
+            _repository.SaveChanges();
+        }
+
+
+
     }
 }

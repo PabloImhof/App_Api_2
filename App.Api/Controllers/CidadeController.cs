@@ -43,7 +43,8 @@ namespace App.Api.Controllers
             };
             _service.Salvar(obj);
             return Json(true);
-        }
+        }        
+
     }
 }
     
