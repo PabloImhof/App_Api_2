@@ -1,4 +1,5 @@
-﻿using App.Domain.Entities;
+﻿using App.Domain.DTO;
+using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,13 +24,32 @@ namespace App.Api.Controllers
         [HttpGet("ListaCidade")]
         public JsonResult ListaCidade()
         {
-            return Json(_service.listaCidade());
+            try
+            {
+                var obj = _service.listaCidade();
+                return Json(RetornoApi.Sucesso(obj));
+
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+            //  return Json(_service.listaCidade());
         }
 
         [HttpGet("BuscaPorId")]
         public JsonResult BuscaPorId(Guid id)
         {
-            return Json(_service.BuscaPorId(id));
+            try
+            {
+                var obj = _service.BuscaPorId(id);
+                return Json(RetornoApi.Sucesso(obj));
+
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
         }
 
         [HttpPost("Salvar")]
@@ -54,4 +74,4 @@ namespace App.Api.Controllers
 
     }
 }
-    
+
