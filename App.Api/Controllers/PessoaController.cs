@@ -47,11 +47,11 @@ namespace App.Api.Controllers
             return Json(true);
         }
 
-        [HttpGet("BuscaPessoa")]
-        public JsonResult BuscaPessoa(string nome)
-        {
-            return Json(_service.BuscaPessoa(nome));
-        }
+       // [HttpGet("BuscaPessoa")]
+      //  public JsonResult BuscaPessoa(string nome)
+      //  {
+     //       return Json(_service.BuscaPessoa(nome));
+     //   }
 
 
         [HttpGet("RemovePessoa")]

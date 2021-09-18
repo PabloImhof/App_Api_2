@@ -1,0 +1,22 @@
+﻿@page "/cidade"
+<h4>Lista de Cidades</h4>
+<button onclick="window.location.href = '/cidades/formulario'">Adicionar</button>
+<div class="table-responsive" id="table">
+
+    <table class="table m-0">
+        <thead>
+            <tr>
+                <td>Cep</td>
+                <td>Cidade</td>
+                <td>UF</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/cidades.js"></script>
+}
